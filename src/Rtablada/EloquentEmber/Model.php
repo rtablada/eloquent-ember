@@ -1,6 +1,6 @@
 <?php namespace Rtablada\EloquentEmber;
 
-class BaseModel extends \Illuminate\Database\Eloquent\Model
+class Model extends \Illuminate\Database\Eloquent\Model
 {
 	public function toEmberArray()
 	{
