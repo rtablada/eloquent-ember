@@ -14,7 +14,7 @@ class Model extends \Illuminate\Database\Eloquent\Model
 
 	public function newCollection(array $models = array())
 	{
-		return new EmberArrayCollection($models, $this->with);
+		return new Collection($models, $this->with);
 	}
 
 	public function toArray()
