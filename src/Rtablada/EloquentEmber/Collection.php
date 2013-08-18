@@ -1,6 +1,6 @@
 <?php namespace Rtablada\EloquentEmber;
 
-class Collection extends Illuminate\Database\Eloquent\Collection
+class Collection extends \Illuminate\Database\Eloquent\Collection
 {
 	/**
 	 * Create a new collection.
