@@ -1,0 +1,20 @@
+{
+    "name": "rtablada/eloquent-ember",
+    "description": "",
+    "authors": [
+        {
+            "name": "Ryan Tablada",
+            "email": "ryan.tablada@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/database": "4.0.x"
+    },
+    "autoload": {
+        "psr-0": {
+            "Rtablada\\EloquentEmber": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
