@@ -6,7 +6,7 @@ class Model extends \Illuminate\Database\Eloquent\Model
 	{
 		foreach ($this->with as $relation) {
 			$collection = $this->$relation;
-			$this->$relation = $collection->modelKeys();
+			$this->attributes["{$relation}_ids"] = $collection->modelKeys();
 		}
 
 		return $this->attributesToArray();
