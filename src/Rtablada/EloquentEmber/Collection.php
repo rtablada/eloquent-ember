@@ -22,7 +22,7 @@ class Collection extends \Illuminate\Database\Eloquent\Collection
 
 		$this->each(function($model) use (&$items)
 		{
-			$items[] = $model->toEmberArray();
+			$items[] = $model->toEmberArray(false);
 		});
 
 		return array($modelKey => $items);
@@ -31,6 +31,6 @@ class Collection extends \Illuminate\Database\Eloquent\Collection
 	public function getModelKey()
 	{
 		$first = $this->first();
-		return str_replace('\\', '', snake_case(str_plural(class_basename($first))));
+		return str_plural($first->getModelKey());
 	}
 }

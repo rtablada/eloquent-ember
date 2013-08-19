@@ -2,7 +2,7 @@
 
 class Model extends \Illuminate\Database\Eloquent\Model
 {
-	public function toEmberArray()
+	public function toEmberArray($withWrap = true)
 	{
 		foreach ($this->with as $relation) {
 			$collection = $this->$relation;
@@ -15,7 +15,11 @@ class Model extends \Illuminate\Database\Eloquent\Model
 			}
 		}
 
-		return $this->attributesToArray();
+		if (!$withWrap) {
+			return $this->attributesToArray();
+		} else {
+			return array($this->getModelKey() => $this->attributesToArray());
+		}
 	}
 
 	public function newCollection(array $models = array())
@@ -31,5 +35,10 @@ class Model extends \Illuminate\Database\Eloquent\Model
 	public function toArrayWithRelations()
 	{
 		return parent::toArray();
+	}
+
+	public function getModelKey()
+	{
+		return str_replace('\\', '', snake_case(class_basename($this)));
 	}
 }
