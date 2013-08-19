@@ -6,7 +6,13 @@ class Model extends \Illuminate\Database\Eloquent\Model
 	{
 		foreach ($this->with as $relation) {
 			$collection = $this->$relation;
-			$this->attributes["{$relation}_ids"] = $collection->modelKeys();
+			// If Plural
+			if (substr($relation, -1) === 's') {
+				$key = str_singular($relation);
+				$this->attributes["{$key}_ids"] = $collection->modelKeys();
+			} else {
+				$this->attributes["{$relation}_id"] = $collection->modelKeys();
+			}
 		}
 
 		return $this->attributesToArray();
