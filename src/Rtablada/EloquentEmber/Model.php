@@ -24,7 +24,7 @@ class Model extends \Illuminate\Database\Eloquent\Model
 
 	public function newCollection(array $models = array())
 	{
-		return new Collection($models, $this->with);
+		return new Collection($models, $this->with, $this->getModelKey());
 	}
 
 	public function toArray()

@@ -2,16 +2,19 @@
 
 class Collection extends \Illuminate\Database\Eloquent\Collection
 {
+	public $modelKey;
+
 	/**
 	 * Create a new collection.
 	 *
 	 * @param  array  $items
 	 * @return void
 	 */
-	public function __construct(array $items = array(), $relations)
+	public function __construct(array $items = array(), $relations, $modelKey)
 	{
 		$this->items = $items;
 		$this->relations = $relations;
+		$this->modelKey = $modelKey;
 	}
 
 	public function toEmberArray()
@@ -30,7 +33,6 @@ class Collection extends \Illuminate\Database\Eloquent\Collection
 
 	public function getModelKey()
 	{
-		$first = $this->first();
-		return str_plural($first->getModelKey());
+		return $this->modelKey;
 	}
 }
