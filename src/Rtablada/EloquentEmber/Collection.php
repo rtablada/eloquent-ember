@@ -33,6 +33,6 @@ class Collection extends \Illuminate\Database\Eloquent\Collection
 
 	public function getModelKey()
 	{
-		return $this->modelKey;
+		return str_plural($this->modelKey);
 	}
 }
