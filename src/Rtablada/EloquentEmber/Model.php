@@ -18,20 +18,15 @@ class Model extends \Illuminate\Database\Eloquent\Model
 		}
 
 		if (!$withWrap) {
-			return $this->attributesToArray();
+			return $this->toArray();
 		} else {
-			return array($this->getModelKey() => $this->attributesToArray());
+			return array($this->getModelKey() => $this->toArray());
 		}
 	}
 
 	public function newCollection(array $models = array())
 	{
 		return new Collection($models, $this->withIds, $this->getModelKey());
-	}
-
-	public function toArray()
-	{
-		return $this->attributesToArray();
 	}
 
 	public function toArrayWithRelations()
