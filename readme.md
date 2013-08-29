@@ -6,7 +6,7 @@ Just add `rtablada/eloquent-ember` to your composer.json.
 Use
 ===========
 In your models just extend `Rtablada\EloquentEmber\Model`.
-Also, list all of your relationships in the `with` property on your model.
+Also, list all of your relationships in the `withIds` property on your model.
 
 Now instead of calling `toArray()` call `toEmberArray()`.
 

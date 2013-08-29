@@ -4,7 +4,7 @@ class Model extends \Illuminate\Database\Eloquent\Model
 {
 	public function toEmberArray($withWrap = true)
 	{
-		foreach ($this->with as $relation) {
+		foreach ($this->withIds as $relation) {
 			$collection = $this->$relation;
 			// If Plural
 			if (substr($relation, -1) === 's') {
@@ -24,7 +24,7 @@ class Model extends \Illuminate\Database\Eloquent\Model
 
 	public function newCollection(array $models = array())
 	{
-		return new Collection($models, $this->with, $this->getModelKey());
+		return new Collection($models, $this->withIds, $this->getModelKey());
 	}
 
 	public function toArray()
