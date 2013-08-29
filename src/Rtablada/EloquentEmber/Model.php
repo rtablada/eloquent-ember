@@ -2,6 +2,8 @@
 
 class Model extends \Illuminate\Database\Eloquent\Model
 {
+	protected $withIds = array();
+
 	public function toEmberArray($withWrap = true)
 	{
 		foreach ($this->withIds as $relation) {
