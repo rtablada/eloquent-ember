@@ -6,7 +6,10 @@ class Model extends \Illuminate\Database\Eloquent\Model
 
 	public function toEmberArray($withWrap = true)
 	{
-		foreach ($this->withIds as $relation) {
+		$relations = array_merge($this->withIds, $this->with);
+		$sideloaded = $this->relationsToArray();
+
+		foreach ($relations as $relation) {
 			$collection = $this->$relation;
 			// If Plural
 			if (substr($relation, -1) === 's') {
@@ -17,11 +20,25 @@ class Model extends \Illuminate\Database\Eloquent\Model
 			}
 		}
 
+
 		if (!$withWrap) {
 			return $this->toArray();
 		} else {
-			return array($this->getModelKey() => $this->toArray());
+			return $this->sideloadRelated($relations, $sideloaded);
 		}
+	}
+
+	public function sideloadRelated($relations, $sideloaded)
+	{
+		$array = $this->toArray();
+
+		foreach ($relations as $relation) {
+			unset($array[$relation]);
+		}
+
+		$array = array($this->getModelKey() => $array);
+
+		return array_merge($array, $sideloaded);
 	}
 
 	public function newCollection(array $models = array())

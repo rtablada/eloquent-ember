@@ -10,10 +10,10 @@ class Collection extends \Illuminate\Database\Eloquent\Collection
 	 * @param  array  $items
 	 * @return void
 	 */
-	public function __construct(array $items = array(), $relations, $modelKey)
+	public function __construct(array $items = array(), $sideloads, $modelKey)
 	{
 		$this->items = $items;
-		$this->relations = $relations;
+		$this->sideloads = $sideloads;
 		$this->modelKey = $modelKey;
 	}
 
