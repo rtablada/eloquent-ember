@@ -1,5 +1,7 @@
 <?php namespace Rtablada\EloquentEmber;
 
+use Illuminate\Support\Collection as LaravelCollection;
+
 class Collection extends \Illuminate\Database\Eloquent\Collection
 {
 	public $modelKey;
@@ -23,12 +25,21 @@ class Collection extends \Illuminate\Database\Eloquent\Collection
 
 		$items = array();
 
+		$relations = array();
+
+		$this->each(function($model) use (&$relations)
+		{
+			$relations = array_merge_recursive($model->relationsToArray(), $relations);
+		});
+
 		$this->each(function($model) use (&$items)
 		{
 			$items[] = $model->toEmberArray(false);
 		});
 
-		return array($modelKey => $items);
+		$array = array($modelKey => $items);
+
+		return array_merge($array, $relations);
 	}
 
 	public function getModelKey()

@@ -22,7 +22,7 @@ class Model extends \Illuminate\Database\Eloquent\Model
 
 
 		if (!$withWrap) {
-			return $this->toArray();
+			return $this->removeRelations($relations);
 		} else {
 			return $this->sideloadRelated($relations, $sideloaded);
 		}
@@ -30,15 +30,20 @@ class Model extends \Illuminate\Database\Eloquent\Model
 
 	public function sideloadRelated($relations, $sideloaded)
 	{
+		$array = array($this->getModelKey() => $this->removeRelations($relations));
+
+		return array_merge($array, $sideloaded);
+	}
+
+	public function removeRelations($relations)
+	{
 		$array = $this->toArray();
 
 		foreach ($relations as $relation) {
 			unset($array[$relation]);
 		}
 
-		$array = array($this->getModelKey() => $array);
-
-		return array_merge($array, $sideloaded);
+		return $array;
 	}
 
 	public function newCollection(array $models = array())
