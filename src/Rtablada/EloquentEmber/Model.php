@@ -20,7 +20,7 @@ class Model extends \Illuminate\Database\Eloquent\Model
 		if (!$withWrap) {
 			return $this->toArray();
 		} else {
-			return array($this->getModelKey() => $this->toArray());
+			return array($this->getModelKey() => $this->attributes, $relation => $this->$relation->toArray());
 		}
 	}
 
