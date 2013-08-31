@@ -13,7 +13,7 @@ class Model extends \Illuminate\Database\Eloquent\Model
 			$collection = $this->$relation;
 			// If Plural
 			if (substr($relation, -1) === 's') {
-				$key = str_singular($relation);
+				$key = snake_case(str_singular($relation));
 				$this->attributes["{$key}_ids"] = $collection->modelKeys();
 			} else {
 				$this->attributes["{$relation}_id"] = $collection->modelKeys();
