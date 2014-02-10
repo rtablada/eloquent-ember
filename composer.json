@@ -9,7 +9,7 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "illuminate/database": "4.0.x"
+        "illuminate/database": "~4"
     },
     "autoload": {
         "psr-0": {
