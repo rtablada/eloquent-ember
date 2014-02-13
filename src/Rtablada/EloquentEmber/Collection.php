@@ -46,4 +46,19 @@ class Collection extends \Illuminate\Database\Eloquent\Collection
 	{
 		return str_plural($this->modelKey);
 	}
+
+	public function merge($collection, $sideloads = false, $modelKey = false)
+	{
+		$sideloads = $sideloads ?: $this->sideloads;
+		$modelKey = $modelKey ?: $this->modelKey;
+
+		$dictionary = $this->getDictionary($this);
+
+		foreach ($collection as $item)
+		{
+			$dictionary[$item->getKey()] = $item;
+		}
+
+		return new static(array_values($dictionary), $sideloads, $modelKey);
+	}
 }
