@@ -8,23 +8,24 @@ class Model extends \Illuminate\Database\Eloquent\Model
 	{
 		$relations = array_merge($this->withIds, $this->with);
 		$sideloaded = $this->relationsToArray();
+		$emberRelations = array();
 
 		foreach ($relations as $relation) {
 			$collection = $this->$relation;
 			// If Plural
 			if (substr($relation, -1) === 's') {
 				$key = snake_case(str_singular($relation));
-				$this->attributes["{$key}_ids"] = $collection->modelKeys();
+				$emberRelations["{$key}s"] = $collection->modelKeys();
 			} else {
-				$this->attributes["{$relation}_id"] = $collection->modelKeys();
+				$emberRelations["{$relation}"] = $collection->modelKeys();
 			}
 		}
 
 
 		if (!$withWrap) {
-			return $this->removeRelations($relations);
+			return array_merge($this->removeRelations($relations), $emberRelations);
 		} else {
-			return $this->sideloadRelated($relations, $sideloaded);
+			return array_merge($this->sideloadRelated($relations, $sideloaded), $emberRelations);
 		}
 	}
 
