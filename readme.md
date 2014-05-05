@@ -1,7 +1,10 @@
 Installation
 ===========
 
-Just add `rtablada/eloquent-ember` to your composer.json.
+Add the following line to your composer.json file then run composer update
+```php
+"rtablada/eloquent-ember" : "*"
+```
 
 Use
 ===========
