@@ -1,3 +1,9 @@
+This has been deprecated.
+For the reasoning behind this checkout http://ryantablada.com/post/why-i-am-deprecating-eloquent-ember.
+
+This package is set to work with Ember Data before 1.0 Beta.
+This may function with the new ActiveModelAdapter but is no longer tested or in active development.
+
 Installation
 ===========
 
