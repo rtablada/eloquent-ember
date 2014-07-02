@@ -16,7 +16,7 @@ Also, list all of your relationships in the `withIds` property on your model.
 
 Now instead of calling `toArray()` call `toEmberArray()`.
 
-Heres an example controller for referece
+Heres an example controller for reference
 
 ```php
 public function index()
